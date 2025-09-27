@@ -1,0 +1,24 @@
+# Python cache files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.swp
+
+# Django stuff
+*.sqlite3
+/staticfiles/
+*.log
+
+# Environment variables
+.env
+
+# IDEs / editors
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Node / frontend stuff (if any)
+node_modules/
+dist/
