@@ -3,9 +3,11 @@ certifi==2025.8.3
 charset-normalizer==3.4.3
 Django==5.2.6
 djangorestframework==3.16.1
+gunicorn==23.0.0
 idna==3.10
 joblib==1.5.2
 numpy==2.3.3
+packaging==25.0
 pillow==11.3.0
 requests==2.32.5
 scikit-learn==1.7.2
