@@ -1,0 +1,90 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}Contact Us | Aarogya Saarthi{% endblock %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <!-- HERO / PAGE HEADER -->
+    <div class="jumbotron text-center bg-success text-white py-5 rounded">
+        <h1 class="display-4">Contact Us</h1>
+        <p class="lead">We’re here to help. Reach out to us for queries, feedback, or support.</p>
+    </div>
+
+    <!-- CONTACT INFO CARDS -->
+    <div class="row mt-5 g-4">
+        <!-- Email Card -->
+        <div class="col-12 col-md-4">
+            <div class="card h-100 shadow-sm text-center">
+                <div class="card-body">
+                    <i class="bi bi-envelope-fill fs-1 text-primary"></i>
+                    <h5 class="card-title mt-3">Email</h5>
+                    <p class="card-text">support@aarogyasaarthi.in</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Helpline Card -->
+        <div class="col-12 col-md-4">
+            <div class="card h-100 shadow-sm text-center">
+                <div class="card-body">
+                    <i class="bi bi-telephone-fill fs-1 text-primary"></i>
+                    <h5 class="card-title mt-3">Helpline</h5>
+                    <p class="card-text">+91-12345-67890</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Address Card -->
+        <div class="col-12 col-md-4">
+            <div class="card h-100 shadow-sm text-center">
+                <div class="card-body">
+                    <i class="bi bi-geo-alt-fill fs-1 text-primary"></i>
+                    <h5 class="card-title mt-3">Address</h5>
+                    <p class="card-text">LNCT, Raisen Road, Bhopal, India</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTACT FORM -->
+    <div class="mt-5">
+        <h2 class="text-center mb-4">Send Us a Message</h2>
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-8">
+                <form method="post" action="#">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Your Name</label>
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Your Email</label>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="message" class="form-label">Message</label>
+                        <textarea class="form-control" id="message" name="message" rows="5" placeholder="Type your message here..." required></textarea>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-success px-4 w-100 w-md-auto">Send Message</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAP / LOCATION -->
+    <div class="mt-5 text-center">
+        <h4>Our Location</h4>
+        <div class="ratio ratio-16x9 mt-3">
+            <iframe src="https://maps.google.com/maps?q=LNCT%20Bhopal&t=&z=13&ie=UTF8&iwloc=&output=embed" 
+                    style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

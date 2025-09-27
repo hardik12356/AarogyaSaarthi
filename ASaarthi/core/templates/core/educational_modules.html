@@ -1,0 +1,251 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- ===========================
+     HERO / PAGE HEADER
+============================ -->
+<div class="py-5 text-center text-white" 
+     style="background: linear-gradient(to right, #198754, #43a047); border-radius: 10px;">
+  <h1 class="display-4 fw-bold">📚 Educational Modules</h1>
+  <p class="lead" style="color: #e0f7fa;">Learn to stay safe, healthy, and prevent water-borne diseases in your community.</p>
+</div>
+
+<div class="container my-5">
+  <div class="row g-4">
+
+    <!-- ===========================
+         MAIN MODULES COLUMN
+    ============================ -->
+    <div class="col-lg-8">
+      <div class="row g-4">
+
+        <!-- Proper Hand Washing Module -->
+        <div class="col-md-6 col-sm-12">
+          <div class="card h-100 shadow-lg border-0 hover-shadow">
+            <img src="{% static 'icons/hand_wash.jpg' %}" 
+                 class="card-img-top img-fluid w-100" alt="Hand Washing">
+            <div class="card-body">
+              <h5 class="card-title text-success fw-bold">🧼 Proper Hand Washing</h5>
+              <p class="card-text">Learn how to wash hands correctly to prevent water-borne and contagious diseases.</p>
+              <button class="btn btn-success btn-sm w-100" type="button" data-bs-toggle="collapse" data-bs-target="#handWashCollapse">
+                Learn More
+              </button>
+              <div class="collapse mt-3" id="handWashCollapse">
+                <h6>Steps:</h6>
+                <ul>
+                  <li>Wet hands with clean water</li>
+                  <li>Apply soap and rub for 20 seconds</li>
+                  <li>Scrub between fingers, under nails, and back of hands</li>
+                  <li>Rinse thoroughly and dry with a clean towel</li>
+                </ul>
+                <h6>Actions Villagers Can Take:</h6>
+                <ul>
+                  <li>Install hand-washing stations in homes and schools</li>
+                  <li>Encourage children to wash hands before meals</li>
+                  <li>Use ash or sanitizer if soap is unavailable</li>
+                </ul>
+                <h6>Health Tips:</h6>
+                <ul>
+                  <li>Wash hands after using the toilet or cleaning surroundings</li>
+                  <li>Teach community about hygiene importance</li>
+                  <li>Prevent spread of diarrhea, cholera, typhoid</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Safe Drinking Water Module -->
+        <div class="col-md-6 col-sm-12">
+          <div class="card h-100 shadow-lg border-0 hover-shadow">
+            <img src="{% static 'icons/safe_water.jpg' %}" 
+                 class="card-img-top img-fluid w-100" alt="Safe Water">
+            <div class="card-body">
+              <h5 class="card-title text-primary fw-bold">💧 Safe Drinking Water</h5>
+              <p class="card-text">Understand purification methods and avoid contamination at the household level.</p>
+              <button class="btn btn-primary btn-sm w-100" type="button" data-bs-toggle="collapse" data-bs-target="#safeWaterCollapse">
+                Learn More
+              </button>
+              <div class="collapse mt-3" id="safeWaterCollapse">
+                <h6>Steps:</h6>
+                <ul>
+                  <li>Boil water for at least 5 minutes</li>
+                  <li>Use filters or purification tablets</li>
+                  <li>Store water in clean, covered containers</li>
+                </ul>
+                <h6>Actions Villagers Can Take:</h6>
+                <ul>
+                  <li>Regularly clean storage containers</li>
+                  <li>Protect water sources from contamination</li>
+                  <li>Report polluted water sources to local health officials</li>
+                </ul>
+                <h6>Health Tips:</h6>
+                <ul>
+                  <li>Drink only treated water</li>
+                  <li>Avoid using water from ponds or stagnant sources</li>
+                  <li>Prevent diseases like cholera, typhoid, hepatitis A</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Disease Prevention Module -->
+        <div class="col-md-6 col-sm-12">
+          <div class="card h-100 shadow-lg border-0 hover-shadow">
+            <img src="{% static 'icons/disease_prevention.jpg' %}" 
+                 class="card-img-top img-fluid w-100" alt="Disease Prevention">
+            <div class="card-body">
+              <h5 class="card-title text-danger fw-bold">🩺 Disease Prevention Tips</h5>
+              <p class="card-text">Hygiene, sanitation, and early detection tips to prevent water-borne illnesses.</p>
+              <button class="btn btn-danger btn-sm w-100" type="button" data-bs-toggle="collapse" data-bs-target="#diseaseCollapse">
+                Learn More
+              </button>
+              <div class="collapse mt-3" id="diseaseCollapse">
+                <h6>Steps:</h6>
+                <ul>
+                  <li>Keep surroundings clean and dispose of waste properly</li>
+                  <li>Cook food thoroughly and drink safe water</li>
+                  <li>Wash fruits and vegetables before consumption</li>
+                </ul>
+                <h6>Actions Villagers Can Take:</h6>
+                <ul>
+                  <li>Educate family and neighbors about hygiene practices</li>
+                  <li>Encourage reporting of symptoms early</li>
+                  <li>Participate in community clean-up drives</li>
+                </ul>
+                <h6>Health Tips:</h6>
+                <ul>
+                  <li>Recognize early signs of diarrhea, cholera, or typhoid</li>
+                  <li>Visit health centers promptly</li>
+                  <li>Encourage vaccination where available</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sanitation & Waste Management Module -->
+        <div class="col-md-6 col-sm-12">
+          <div class="card h-100 shadow-lg border-0 hover-shadow">
+            <img src="{% static 'icons/sanitation.jpg' %}" 
+                 class="card-img-top img-fluid w-100" alt="Sanitation & Waste Management">
+            <div class="card-body">
+              <h5 class="card-title text-warning fw-bold">🗑️ Sanitation & Waste Management</h5>
+              <p class="card-text">Learn how proper sanitation and waste disposal prevent water-borne and other infectious diseases.</p>
+              <button class="btn btn-warning btn-sm w-100" type="button" data-bs-toggle="collapse" data-bs-target="#sanitationCollapse">
+                Learn More
+              </button>
+              <div class="collapse mt-3" id="sanitationCollapse">
+                <h6>Steps:</h6>
+                <ul>
+                  <li>Dispose household waste in designated bins</li>
+                  <li>Keep surroundings clean and avoid open defecation</li>
+                  <li>Ensure drainage systems are not blocked</li>
+                </ul>
+                <h6>Actions Villagers Can Take:</h6>
+                <ul>
+                  <li>Organize community clean-up drives</li>
+                  <li>Educate neighbors about safe waste disposal</li>
+                  <li>Maintain cleanliness around water sources</li>
+                </ul>
+                <h6>Health Tips:</h6>
+                <ul>
+                  <li>Prevent diarrhea, cholera, and other infections</li>
+                  <li>Encourage children to follow hygiene practices</li>
+                  <li>Report clogged drains or sanitation issues to authorities</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ===========================
+         SIDEBAR: Quick Tips & Alerts
+    ============================ -->
+    <div class="col-lg-4 col-md-12">
+      <div class="card shadow-sm mb-4">
+        <div class="card-header bg-success text-white fw-bold">💡 Quick Tips & Alerts</div>
+        <div class="card-body">
+          <ul class="list-unstyled mb-0 small">
+            <li>✅ Wash hands with soap before meals and after using the toilet</li>
+            <li>✅ Drink only boiled or filtered water</li>
+            <li>⚠️ Avoid stagnant water to prevent mosquito-borne diseases</li>
+            <li>✅ Cover food and water containers to prevent contamination</li>
+            <li>⚠️ Report any sudden diarrheal cases to the local health worker</li>
+            <li>✅ Participate in community clean-up activities regularly</li>
+            <li>💧 Ensure children follow hand-washing routines at school</li>
+            <li>✅ Keep kitchens and food preparation areas clean</li>
+            <li>⚠️ Avoid using untreated pond or river water</li>
+            <li>✅ Encourage neighbors to practice safe water habits</li>
+            <li>💉 Make sure vaccinations are up to date in your family</li>
+            <li>🧹 Maintain proper drainage around homes to prevent mosquito breeding</li>
+            <li>📢 Spread awareness about safe hygiene practices in the village</li>
+            <li>🌱 Plant trees and maintain greenery to reduce dust and contamination</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===========================
+     RESOURCES & DOWNLOADS
+============================ -->
+<div class="container my-5">
+  <h3 class="mb-4 text-center">📥 Resources & Downloads</h3>
+  <p class="text-center text-muted mb-5">Download guides, infographics, and videos to educate yourself and your community.</p>
+  <div class="row g-4">
+
+    <!-- Resource Cards -->
+    <div class="col-md-4 col-sm-12">
+      <div class="card h-100 shadow-sm text-center">
+        <div class="card-body">
+          <h5 class="card-title fw-bold">Hand Hygiene Guide (PDF)</h5>
+          <p class="card-text">Step-by-step instructions on proper hand washing and hygiene practices.</p>
+          <a href="{% static 'resources/hand_hygiene.pdf' %}" class="btn btn-success btn-sm w-100" target="_blank">Download PDF</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4 col-sm-12">
+      <div class="card h-100 shadow-sm text-center">
+        <div class="card-body">
+          <h5 class="card-title fw-bold">Safe Water Tips (Infographic)</h5>
+          <p class="card-text">Visual guide on water purification and safe drinking practices.</p>
+          <a href="{% static 'resources/safe_water.pdf' %}" class="btn btn-primary btn-sm w-100" target="_blank">Download PDF</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4 col-sm-12">
+      <div class="card h-100 shadow-sm text-center">
+        <div class="card-body">
+          <h5 class="card-title fw-bold">Preventing Water-borne Diseases (Video)</h5>
+          <p class="card-text">Educational video on disease prevention for community awareness.</p>
+          <a href="{% static 'resources/prevention_video.mp4' %}" class="btn btn-danger btn-sm w-100" target="_blank">Watch Video</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===========================
+     CUSTOM HOVER EFFECT
+============================ -->
+<style>
+.hover-shadow:hover {
+  transform: translateY(-5px);
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.25) !important;
+}
+</style>
+
+{% endblock %}

@@ -1,0 +1,185 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}Help & Guidelines | Aarogya Saarthi{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+
+    <!-- HERO SECTION -->
+    <section class="p-5 rounded-4 text-white text-center" style="background: linear-gradient(90deg,#198754,#43a047);">
+        <h1 class="fw-bold">Help & Guidelines</h1>
+        <p class="lead mb-0">Find answers to common questions and follow preventive steps to keep your community safe.</p>
+    </section>
+
+    <!-- FAQ SECTION -->
+    <div class="mt-5">
+        <h2 class="text-center mb-4">Frequently Asked Questions</h2>
+        <div class="accordion" id="faqAccordion">
+
+            <!-- Question 1 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="faqHeading1">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                        What should I do if I notice symptoms of a waterborne disease?
+                    </button>
+                </h2>
+                <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        If you notice symptoms such as diarrhea, vomiting, stomach cramps, fever, or dehydration, it is very important to take immediate action. First, drink plenty of safe and clean fluids such as boiled water or ORS (Oral Rehydration Solution) to prevent dehydration. Avoid consuming untreated water and street food. If symptoms persist for more than a day or become severe (like blood in stool, high fever, or continuous vomiting), you should visit the nearest healthcare center or hospital without delay. Early medical intervention can prevent complications and save lives.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 2 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="faqHeading2">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                        How can I make water safe for drinking at home?
+                    </button>
+                </h2>
+                <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        There are several ways to make water safe for drinking at home. The most common and reliable method is boiling water for at least 10–15 minutes and allowing it to cool before consumption. You can also use water purifiers or filters that are certified for removing bacteria, viruses, and heavy metals. In areas without access to these, adding chlorine tablets or iodine drops can also purify water to a certain extent. Always store drinking water in clean, covered containers, and avoid touching the water directly with your hands to prevent contamination.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 3 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="faqHeading3">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                        What are the most common causes of water contamination?
+                    </button>
+                </h2>
+                <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Water can get contaminated due to several reasons. Some of the most common causes include sewage leakage into water sources, industrial waste discharge, open defecation near rivers or lakes, chemical pesticides seeping into groundwater, and improper storage of drinking water at home. Additionally, flooding or heavy rains can mix waste with drinking water supplies. Contaminated water may carry harmful microorganisms like bacteria (E. coli, cholera), viruses, and parasites, which can lead to serious illnesses. Regular cleaning of water tanks and safe sanitation practices are crucial to reducing contamination.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 4 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="faqHeading4">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                        How can I prevent my family from getting sick during a waterborne disease outbreak?
+                    </button>
+                </h2>
+                <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        During a waterborne disease outbreak, prevention is the most effective safeguard. Always ensure your family drinks only safe and treated water—boiled, filtered, or packaged. Wash hands thoroughly with soap before eating and after using the toilet. Avoid eating raw street food or cut fruits sold in the open. Cook food thoroughly and store it in covered containers. Keep your surroundings clean, and dispose of waste properly. If any family member shows symptoms, isolate them from others, provide ORS to prevent dehydration, and seek medical help immediately. Early action reduces the spread of infection within the household and community.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 5 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="faqHeading5">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5">
+                        How do I report an issue or symptom in Aarogya Saarthi?
+                    </button>
+                </h2>
+                <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        You can report issues or symptoms directly through the Aarogya Saarthi platform. Log in to your dashboard, click on the "Report Symptoms" button, and fill out the form with accurate details such as your location, symptoms, and duration of illness. This information will be sent to the system for analysis and help health officials respond quickly. Providing timely and correct information ensures better disease tracking and faster solutions for your community.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 6 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="faqHeading6">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq6">
+                        What government schemes or support are available for clean drinking water?
+                    </button>
+                </h2>
+                <div id="faq6" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        In India, the government has launched several initiatives to ensure safe drinking water. The <strong>Jal Jeevan Mission</strong> aims to provide tap water connections to all rural households by 2024. Programs like the <strong>Swachh Bharat Mission</strong> and <strong>National Rural Drinking Water Programme</strong> focus on sanitation and clean water access. Local panchayats and health departments also run awareness drives and water testing campaigns. Villagers can approach their Gram Panchayat or local health office to know about schemes active in their area.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 7 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="faqHeading7">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq7">
+                        How does Aarogya Saarthi ensure data privacy and security?
+                    </button>
+                </h2>
+                <div id="faq7" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Aarogya Saarthi prioritizes your data privacy. All personal and health information you provide is stored securely and used only for analysis to detect potential outbreaks and improve community health. The system follows best practices such as encrypted data storage, secure communication channels, and restricted access for authorized health officials only. Your details are never shared publicly without consent. The goal is to balance public health safety with individual privacy protection.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 8 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="faqHeading8">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq8">
+                        How often should water quality be checked in villages?
+                    </button>
+                </h2>
+                <div id="faq8" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Ideally, water quality should be checked at least once a week in high-risk areas and at least once a month in normal conditions. During the rainy season or after floods, testing should be more frequent as contamination risk is higher. Aarogya Saarthi integrates real-time sensor data (where available) to give updated readings instantly. In the absence of sensors, villagers are encouraged to collect water samples for testing at local health centers regularly.
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- GUIDELINES SECTION -->
+    <section class="mt-5">
+        <h2 class="fw-bold mb-3">Preventive Guidelines</h2>
+        <div class="row g-4">
+            <!-- Do's -->
+            <div class="col-12 col-md-6">
+                <div class="card shadow-sm border-0 h-100">
+                    <div class="card-body">
+                        <h5 class="fw-bold text-success">✅ Do’s</h5>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Drink only boiled or filtered water.</li>
+                            <li class="list-group-item">Wash hands regularly with soap.</li>
+                            <li class="list-group-item">Store drinking water in clean covered containers.</li>
+                            <li class="list-group-item">Report any health symptoms promptly.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Don'ts -->
+            <div class="col-12 col-md-6">
+                <div class="card shadow-sm border-0 h-100">
+                    <div class="card-body">
+                        <h5 class="fw-bold text-danger">❌ Don’ts</h5>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Do not drink water from unknown or open sources.</li>
+                            <li class="list-group-item">Avoid open defecation — keep surroundings clean.</li>
+                            <li class="list-group-item">Don’t ignore early signs of illness.</li>
+                            <li class="list-group-item">Never store drinking water in dirty or uncovered vessels.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- QUICK HELP / CTA -->
+    <section class="mt-5 text-center">
+        <div class="p-4 rounded-3" style="background:#f1f8f4;">
+            <h4 class="fw-bold">Still need help?</h4>
+            <p class="text-muted mb-3">Contact us anytime or take quick actions below.</p>
+            <div class="d-grid gap-2 d-md-flex justify-content-center">
+                <a href="{% url 'contact' %}" class="btn btn-success btn-lg">📩 Contact Us</a>
+                <a href="{% url 'report_symptoms' %}" class="btn btn-outline-success btn-lg">📝 Report Symptoms</a>
+                <a href="{% url 'dashboard' %}" class="btn btn-outline-success btn-lg">📊 View Dashboard</a>
+            </div>
+        </div>
+    </section>
+
+</div>
+{% endblock %}

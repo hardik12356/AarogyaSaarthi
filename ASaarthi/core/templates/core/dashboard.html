@@ -1,0 +1,318 @@
+{% extends 'core/base.html' %}
+{% block content %}
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+<div class="container-fluid py-4">
+
+  <div class="row mb-4">
+    <div class="col-md-3 col-12 mb-3">
+      <!-- Sidebar Alerts -->
+      <div class="position-sticky" style="top:20px;">
+        <div class="card shadow-sm">
+          <div class="card-header bg-danger text-white fw-bold"><i class="bi bi-exclamation-triangle-fill"></i> Alerts</div>
+          <div class="card-body" style="max-height:400px; overflow-y:auto;">
+            <ul id="alerts-list" class="list-unstyled mb-0">
+              <li>Loading alerts...</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-9 col-12 mb-3">
+      <!-- Water Quality Map -->
+      <div class="card shadow-sm mb-4">
+        <div class="card-header bg-success text-white fw-bold"><i class="bi bi-map-fill"></i> Water Quality Map</div>
+        <div class="card-body p-0">
+          <div id="map" style="width:100%; min-height:420px;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Summary Cards -->
+  <div class="row mb-4">
+    <div class="col-md-3 col-6 mb-3">
+      <div class="card text-center shadow-sm">
+        <div class="card-body">
+          <h5>Total Villages</h5>
+          <h3 id="total-villages">0</h3>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 col-6 mb-3">
+      <div class="card text-center shadow-sm">
+        <div class="card-body">
+          <h5>Total Reports</h5>
+          <h3 id="total-reports">0</h3>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 col-6 mb-3">
+      <div class="card text-center shadow-sm">
+        <div class="card-body">
+          <h5>Unsafe Villages</h5>
+          <h3 id="unsafe-villages">0</h3>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 col-6 mb-3">
+      <div class="card text-center shadow-sm">
+        <div class="card-body">
+          <h5>Average pH</h5>
+          <h3 id="avg-ph">0</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Charts Row -->
+  <div class="row mb-4">
+    <div class="col-md-6 col-12 mb-3">
+      <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white fw-bold">Weekly Symptom Reports</div>
+        <div class="card-body">
+          <canvas id="symptomChart" style="min-height:250px;"></canvas>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 col-12 mb-3">
+      <div class="card shadow-sm">
+        <div class="card-header bg-info text-white fw-bold">Comparison of Water Parameters</div>
+        <div class="card-body">
+          <canvas id="compareChart" style="min-height:250px;"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Detailed Charts Row -->
+  <div class="row mb-4">
+    <div class="col-md-4 col-12 mb-3">
+      <div class="card shadow-sm">
+        <div class="card-header bg-warning text-dark fw-bold">pH Levels</div>
+        <div class="card-body">
+          <canvas id="phChart" style="min-height:200px;"></canvas>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 col-12 mb-3">
+      <div class="card shadow-sm">
+        <div class="card-header bg-danger text-white fw-bold">Turbidity</div>
+        <div class="card-body">
+          <canvas id="turbidityChart" style="min-height:200px;"></canvas>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 col-12 mb-3">
+      <div class="card shadow-sm">
+        <div class="card-header bg-secondary text-white fw-bold">TDS</div>
+        <div class="card-body">
+          <canvas id="tdsChart" style="min-height:200px;"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Trend & Radar Row -->
+  <div class="row mb-4">
+    <div class="col-md-6 col-12 mb-3">
+      <div class="card shadow-sm">
+        <div class="card-header bg-success text-white fw-bold">Parameter Trends</div>
+        <div class="card-body">
+          <canvas id="trendChart" style="min-height:250px;"></canvas>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 col-12 mb-3">
+      <div class="card shadow-sm">
+        <div class="card-header bg-dark text-white fw-bold">Village-wise Water Profile</div>
+        <div class="card-body">
+          <canvas id="radarChart" style="min-height:250px;"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Recent Reports Table -->
+  <div class="row mb-4">
+    <div class="col-12 mb-3">
+      <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white fw-bold">Recent Reports</div>
+        <div class="card-body p-0 table-responsive">
+          <table class="table table-striped table-hover mb-0">
+            <thead class="table-dark"><tr><th>Village</th><th>Name</th><th>Symptoms</th><th>Time</th></tr></thead>
+            <tbody>
+              {% for r in recent_reports %}
+              <tr>
+                <td>{{ r.village }}</td>
+                <td>{{ r.name }}</td>
+                <td>{{ r.symptoms }}</td>
+                <td>{{ r.reported_at }}</td>
+              </tr>
+              {% empty %}
+              <tr><td colspan="4" class="text-center">No reports</td></tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Recent Water Data Table -->
+  <div class="row mb-4">
+    <div class="col-12 mb-3">
+      <div class="card shadow-sm">
+        <div class="card-header bg-secondary text-white fw-bold">Recent Water Data (Auto-updating)</div>
+        <div class="card-body p-0 table-responsive">
+          <table class="table table-striped table-hover mb-0">
+            <thead class="table-dark">
+              <tr>
+                <th>Village</th>
+                <th>pH</th>
+                <th>Turbidity</th>
+                <th>TDS</th>
+                <th>Reports</th>
+                <th>Predicted Disease</th>
+              </tr>
+            </thead>
+            <tbody id="water-data-body">
+              <tr><td colspan="6" class="text-center">Loading...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+<script>
+window.addEventListener("load", function() {
+    let map;
+    let symptomChart, phChart, turbChart, tdsChart, compareChart, trendChart, radarChart;
+    const pastelColors = ["#99c1de","#a3c9a8","#f7c59f","#d6a4e7","#f7a399","#f4d35e","#ff9aa2","#ffb347","#b5ead7","#c7ceea","#ffdac1","#e2f0cb"];
+
+    function safeValue(val, fallback) {
+        return (val === null || val === undefined || isNaN(val)) ? fallback : val;
+    }
+
+    async function loadDashboardData() {
+        try {
+            const res = await fetch("/api/summary/");
+            const data = await res.json();
+            const villages = data.villages;
+
+            // --- Summary Cards ---
+            document.getElementById("total-villages").innerText = villages.length;
+            document.getElementById("total-reports").innerText = villages.reduce((sum,v)=>sum+safeValue(v.symptom_count,0),0);
+            document.getElementById("unsafe-villages").innerText = villages.filter(v=>v.status==="unsafe").length;
+            document.getElementById("avg-ph").innerText = (villages.reduce((sum,v)=>sum+safeValue(v.ph,7),0)/villages.length).toFixed(2);
+
+            // --- Tables ---
+            const tbody = document.getElementById("water-data-body");
+            tbody.innerHTML = villages.map(v=>`
+                <tr>
+                    <td>${v.village}</td>
+                    <td>${safeValue(v.ph,'-')}</td>
+                    <td>${safeValue(v.turbidity,'-')}</td>
+                    <td>${safeValue(v.tds,'-')}</td>
+                    <td>${safeValue(v.symptom_count,0)}</td>
+                    <td>${(v.predicted_disease && v.predicted_disease.length)?v.predicted_disease.join(", "):'-'}</td>
+                </tr>
+            `).join("");
+
+            // --- Prepare chart data once ---
+            const labels = villages.map(v=>v.village);
+            const symptomCounts = villages.map(v=>safeValue(v.symptom_count,0));
+            const phValues = villages.map(v=>safeValue(v.ph,7));
+            const turbidityValues = villages.map(v=>safeValue(v.turbidity,3));
+            const tdsValues = villages.map(v=>safeValue(v.tds,100));
+
+            function updateOrCreateChart(chart, ctx, type, data, options){
+                if(!chart) return new Chart(ctx,{type,data,options});
+                chart.data = data;
+                chart.update();
+                chart.resize();
+                return chart;
+            }
+
+            // --- Lazy-load Map ---
+            const mapContainer = document.getElementById("map");
+            if("IntersectionObserver" in window){
+                const mapObserver = new IntersectionObserver((entries, observer)=>{
+                    entries.forEach(entry=>{
+                        if(entry.isIntersecting && !map){
+                            map = L.map("map").setView([26.2, 92.9], 7);
+                            L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {attribution:"&copy; OpenStreetMap contributors"}).addTo(map);
+                            villages.forEach(v=>{
+                                const lat=safeValue(v.lat,26.0), lng=safeValue(v.lng,92.9);
+                                const ph=safeValue(v.ph,7), turbidity=safeValue(v.turbidity,3), tds=safeValue(v.tds,100);
+                                const symptom_count=safeValue(v.symptom_count,0);
+                                const predicted=(v.predicted_disease && v.predicted_disease.length)?v.predicted_disease.join(", "):"None";
+                                const color=v.status==="safe"?"green":v.status==="warning"?"orange":"red";
+                                L.circleMarker([lat,lng],{radius:7,color,fillOpacity:0.8})
+                                    .addTo(map)
+                                    .bindPopup(`<b>${v.village}</b><br>pH:${ph}<br>Turbidity:${turbidity}<br>TDS:${tds}<br>Reports:${symptom_count}<br>Predicted:${predicted}`);
+                            });
+                            observer.unobserve(mapContainer);
+                        }
+                    });
+                });
+                mapObserver.observe(mapContainer);
+            }
+
+            // --- Lazy-load Charts ---
+            const chartsConfig = [
+                {id:"symptomChart", type:"bar", data:{labels,datasets:[{label:"Symptom Reports",data:symptomCounts,backgroundColor:"rgba(54,162,235,0.6)"}]}, options:{responsive:true,scales:{y:{beginAtZero:true}}}, chartVar:()=>symptomChart, setChart:(c)=>symptomChart=c},
+                {id:"phChart", type:"pie", data:{labels,datasets:[{data:phValues,backgroundColor:pastelColors}]}, options:{plugins:{title:{display:true,text:"Village-wise pH"},legend:{position:'bottom'}}}, chartVar:()=>phChart, setChart:(c)=>phChart=c},
+                {id:"turbidityChart", type:"doughnut", data:{labels,datasets:[{data:turbidityValues,backgroundColor:pastelColors}]}, options:{plugins:{title:{display:true,text:"Village-wise Turbidity"},legend:{position:'bottom'}}}, chartVar:()=>turbChart, setChart:(c)=>turbChart=c},
+                {id:"tdsChart", type:"pie", data:{labels,datasets:[{data:tdsValues,backgroundColor:pastelColors}]}, options:{plugins:{title:{display:true,text:"Village-wise TDS"},legend:{position:'bottom'}}}, chartVar:()=>tdsChart, setChart:(c)=>tdsChart=c},
+                {id:"compareChart", type:"bar", data:{labels,datasets:[{label:"pH",data:phValues,backgroundColor:"#99c1de"},{label:"Turbidity",data:turbidityValues,backgroundColor:"#f7a399"},{label:"TDS/100",data:tdsValues.map(v=>v/100),backgroundColor:"#a3c9a8"}]}, options:{responsive:true,plugins:{title:{display:true,text:"Comparison of Water Parameters"}},scales:{y:{beginAtZero:true}}}, chartVar:()=>compareChart, setChart:(c)=>compareChart=c},
+                {id:"trendChart", type:"line", data:{labels,datasets:[{label:"pH",data:phValues,borderColor:"#2c7da0",fill:false,tension:0.4},{label:"Turbidity",data:turbidityValues,borderColor:"#e76f51",fill:false,tension:0.4},{label:"TDS/100",data:tdsValues.map(v=>v/100),borderColor:"#2a9d8f",fill:false,tension:0.4}]}, options:{responsive:true,plugins:{title:{display:true,text:"Trend of Water Parameters"}}}, chartVar:()=>trendChart, setChart:(c)=>trendChart=c},
+                {id:"radarChart", type:"radar", data:{labels:["pH","Turbidity","TDS/100"],datasets:villages.map((v,i)=>({label:v.village,data:[safeValue(v.ph,7)/5,safeValue(v.turbidity,3)/5,safeValue(v.tds,100)/250],backgroundColor:pastelColors[i%pastelColors.length]+"66",borderColor:pastelColors[i%pastelColors.length],pointBackgroundColor:pastelColors[i%pastelColors.length]}))}, options:{responsive:true,plugins:{title:{display:true,text:"Village-wise Water Profiles"}},scales:{r:{beginAtZero:true,min:0,max:4,ticks:{stepSize:1}}}}, chartVar:()=>radarChart, setChart:(c)=>radarChart=c},
+            ];
+
+            if("IntersectionObserver" in window){
+                const chartObserver = new IntersectionObserver((entries, observer)=>{
+                    entries.forEach(entry=>{
+                        if(entry.isIntersecting){
+                            const cfg = chartsConfig.find(c=>c.id===entry.target.id);
+                            if(cfg && !entry.target.dataset.loaded){
+                                entry.target.dataset.loaded = true;
+                                cfg.setChart(updateOrCreateChart(cfg.chartVar(), entry.target, cfg.type, cfg.data, cfg.options));
+                            }
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                },{threshold:0.1});
+                chartsConfig.forEach(c=>chartObserver.observe(document.getElementById(c.id)));
+            }
+
+            // --- Alerts ---
+            try{
+                const res = await fetch("/api/alerts/");
+                const alertsData = await res.json();
+                const list = document.getElementById("alerts-list");
+                list.innerHTML = alertsData.alerts.length===0 ? "<li>✅ No active alerts</li>" : alertsData.alerts.map(a=>`<li><b>${a.village}</b>: ${a.message}<br><small class="text-muted">${a.triggered_at}</small></li><hr>`).join("");
+            } catch(err){ console.error("Failed to load alerts:", err); }
+
+        } catch(err){ console.error("Error loading dashboard data:", err); }
+    }
+
+    loadDashboardData();
+    setInterval(loadDashboardData,5000);
+});
+</script>
+
+
+
+{% endblock %}
